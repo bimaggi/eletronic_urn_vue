@@ -6,6 +6,7 @@
         v-for="(num, key) in row1"
         :key= "key"
         class="button"
+        @click="setParty(num)"
 
       >
         {{num}}
@@ -16,6 +17,7 @@
         v-for="(num, key) in row2"
         :key= "key"
         class="button"
+        @click="setParty(num)"
       >
       {{num}}
       </button>
@@ -25,6 +27,7 @@
         v-for="(num, key) in row3"
         :key= "key"
         class="button"
+        @click="setParty(num)"
       >
         {{num}}
       </button>
@@ -34,15 +37,16 @@
         v-for="(num, key) in row4"
         :key= "key"
         class="button"
+        @click="setParty(num)"
       >
         {{num}}
       </button>
     </div>
   </div>
   <div class="button__special">
-    <button class="white"> Branco</button>
-    <button class="delete"> Corrige</button>
-    <button class="confirm"> Confirma</button>
+    <button class="white"> BRANCO</button>
+    <button class="delete"> CORRIGE</button>
+    <button class="confirm"> CONFIRMA</button>
   </div>
 </div>
 </template>
@@ -57,6 +61,11 @@ export default {
       row3: '789',
       row4: '0',
     }
+  },
+  props: {
+    setParty: {
+      type: Function,
+    },
   },
 }
 </script>
