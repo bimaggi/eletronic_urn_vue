@@ -1,15 +1,20 @@
 <template>
   <div class="screen">
-      <div v-if="isVote">
+    <div v-if="isVote">
+      <div class="screen_candidate">
         <ballot-election
           :isVote="isVote"
         />
-        <ballot-party
+        <ballot-candidate
           :party="party"
-          :caracters="caracters"
+          :candidate="candidate"
         />
-        <ballot-candidate/>
-        <ballot-instruction/>
+      </div>
+      <ballot-party
+        :party="party"
+        :caracters="caracters"
+      />
+      <ballot-instruction/>
       </div>
       <div v-else>
         Finalização
@@ -41,6 +46,9 @@ export default {
     party: {
       type: String,
     },
+    candidate: {
+      type: String,
+    },
   },
 
 }
@@ -48,9 +56,15 @@ export default {
 
 <style lang="stylus" scoped>
 .screen
-  width: 50%
+  width: 52%
   background-color: $colorScrenn
   border: 1px solid $borderLight
   padding: 15px
   color: $fontDark
+
+.screen_candidate
+  width: 100%
+  height: 60px
+  display: flex
+  justify-content: space-between
 </style>

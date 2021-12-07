@@ -1,54 +1,32 @@
 <template>
 <div class="board">
   <div class="board__form">
-    <div class="form__button">
+    <div
+      class="form__button"
+      v-for="row in rows"
+      :key="row"
+    >
       <button
-        v-for="(num, key) in row1"
-        :key= "key"
+        v-for="(num) in row"
+        :key="num"
         class="button"
-        @click="setParty(num)"
-
-      >
-        {{num}}
-      </button>
-    </div>
-    <div class="form__button">
-      <button
-        v-for="(num, key) in row2"
-        :key= "key"
-        class="button"
-        @click="setParty(num)"
-      >
-      {{num}}
-      </button>
-    </div>
-    <div class="form__button">
-      <button
-        v-for="(num, key) in row3"
-        :key= "key"
-        class="button"
-        @click="setParty(num)"
-      >
-        {{num}}
-      </button>
-    </div>
-    <div class="form__button">
-      <button
-        v-for="(num, key) in row4"
-        :key= "key"
-        class="button"
-        @click="setParty(num)"
+        @click="$emit('clickNumber',num)"
       >
         {{num}}
       </button>
     </div>
   </div>
   <div class="button__special">
-    <button class="white"> BRANCO</button>
-    <button class="delete"> CORRIGE</button>
-    <button class="confirm"> CONFIRMA</button>
+    <button
+      v-for="button in buttons"
+      :key="button.label"
+      :class="button.class"
+      @click="$emit(button.method)"
+      >
+      {{button.label}}
+      </button>
   </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -56,16 +34,28 @@ export default {
   name: 'BallotBoard',
   data() {
     return {
-      row1: '123',
-      row2: '456',
-      row3: '789',
-      row4: '0',
+      rows: [
+        '123',
+        '456',
+        '789',
+        '0',
+      ],
+      buttons: [
+        {
+          label: 'BRANCO',
+          class: 'white',
+          method: 'white',
+        },
+        {
+          label: 'CORRIGE',
+          class: 'delete',
+        },
+        {
+          label: 'CONFIRMA',
+          class: 'confirm',
+        },
+      ],
     }
-  },
-  props: {
-    setParty: {
-      type: Function,
-    },
   },
 }
 </script>

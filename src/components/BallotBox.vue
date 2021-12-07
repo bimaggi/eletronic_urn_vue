@@ -4,9 +4,11 @@
       :isVote="isVote"
       :party="party"
       :caracters="caracters"
-      />
+      :candidate="candidate"
+    />
     <ballot-board
-      :setParty="setParty"
+      @clickNumber="setParty"
+      @white='votarNulo'
     />
   </div>
 </template>
@@ -23,34 +25,38 @@ export default {
   },
   data() {
     return {
-      isVote: 'Prefeito',
+      isVote: 'Melhor Hokage',
       party: '',
       caracters: 2,
       candidate: {},
       candidates: {
-        prefeitos: {
-          11: {
-            name: 'Marcia',
-            party: 14,
-            image: '@/assets/images/hashirama.jpeg',
-          },
-          14: {
-            name: 'José',
-            party: 20,
-            image: '',
-          },
+        '01': {
+          img: 'hashirama',
+          name: 'Senju, Hashirama',
         },
-        vereadores: {
-          2543: {
-            name: 'Juanita',
-            party: 14,
-            image: '',
-          },
-          54467: {
-            name: 'Joselito',
-            party: 20,
-            image: '',
-          },
+        '02': {
+          img: 'tobirama',
+          name: 'Senju, Tobirama',
+        },
+        '03': {
+          img: 'hiruzen',
+          name: 'Sarutobi, Hiruzen',
+        },
+        '04': {
+          img: 'minato',
+          name: 'Namikaze, Minato',
+        },
+        '05': {
+          img: 'tsunade',
+          name: 'Senju, Tsunade',
+        },
+        '06': {
+          img: 'kakashi',
+          name: 'Hatake, Kakashi',
+        },
+        '07': {
+          img: 'naruto',
+          name: 'Uzumaki, Naruto',
         },
       },
     }
@@ -67,8 +73,8 @@ export default {
       if (this.party.length < this.caracters) {
         return false
       }
-      if (this.candidates[this.isVote][this.party]) {
-        this.candidate = this.candidates[this.isVote][this.party]
+      if (this.candidates[this.party]) {
+        this.candidate = this.candidates[this.party]
         return true
       }
       this.candidate = {
@@ -78,7 +84,13 @@ export default {
       }
       return true
     },
+    votarNulo() {
+      console.log(this.candidate.name)
+      console.log('to fazendo teste')
+
+    },
   },
+
 }
 </script>
 
@@ -91,6 +103,6 @@ export default {
     border-radius: $radius
     display: flex
     justify-content: space-between
-    }
+  }
 
 </style>
