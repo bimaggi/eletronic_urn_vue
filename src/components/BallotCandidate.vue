@@ -1,7 +1,7 @@
 <template>
   <div class="candidate">
     <img
-      :src="require(`@/assets/images/${candidate.img}.png`)"
+      :src="require(`@/assets/images/${candidateImage}.png`)"
       class="candidate__image"
     >
   </div>
@@ -10,10 +10,7 @@
 export default {
   name: 'BallotCandidate',
   props: {
-    party: {
-      type: String,
-    },
-    candidate: {
+    candidateImage: {
       type: String,
     },
   },
@@ -21,16 +18,14 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .candidate
-  width: 30%
+  width: 35%
   display: flex
   flex-direction: column
   justify-content: center
   align-items: center
+  margin-top: 15%
 
 .candidate__image
-  width: 90%
-  border-radius: $radius
-  margin-top: 1%
   border: 1px solid $borderDark
 
 .candidate__name

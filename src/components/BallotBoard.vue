@@ -49,10 +49,13 @@ export default {
         {
           label: 'CORRIGE',
           class: 'delete',
+          method: 'delete',
         },
         {
           label: 'CONFIRMA',
           class: 'confirm',
+          method: 'confirm',
+
         },
       ],
     }
@@ -61,7 +64,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .board
-  width: 45%
+  width: 40%
   background-color: $colorBoard
   display: flex
   flex-direction: column

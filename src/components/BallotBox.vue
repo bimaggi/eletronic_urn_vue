@@ -8,7 +8,9 @@
     />
     <ballot-board
       @clickNumber="setParty"
-      @white='votarNulo'
+      @white='whiteVote'
+      @delete='deleteVote'
+      @confirm='confirmVote'
     />
   </div>
 </template>
@@ -16,6 +18,19 @@
 <script>
 import BallotBoard from '@/components/BallotBoard'
 import BallotScreen from '@/components/BallotScreen'
+import confirmAudio from '@/assets/audio/confirm.wav'
+import keyAudio from '@/assets/audio/key.wav'
+import candidates from '@/enums/candidates'
+
+const {
+  CANDIDATE1,
+  CANDIDATE2,
+  CANDIDATE3,
+  CANDIDATE4,
+  CANDIDATE5,
+  CANDIDATE6,
+  CANDIDATE7,
+} = candidates
 
 export default {
   name: 'BallotBox',
@@ -25,44 +40,45 @@ export default {
   },
   data() {
     return {
-      isVote: 'Melhor Hokage',
+      isVote: 'MELHOR HOKAGE',
       party: '',
       caracters: 2,
       candidate: {},
       candidates: {
         '01': {
-          img: 'hashirama',
-          name: 'Senju, Hashirama',
+          img: CANDIDATE1.IMG,
+          name: CANDIDATE1.NAME,
         },
         '02': {
-          img: 'tobirama',
-          name: 'Senju, Tobirama',
+          img: CANDIDATE2.IMG,
+          name: CANDIDATE2.NAME,
         },
         '03': {
-          img: 'hiruzen',
-          name: 'Sarutobi, Hiruzen',
+          img: CANDIDATE3.IMG,
+          name: CANDIDATE3.NAME,
         },
         '04': {
-          img: 'minato',
-          name: 'Namikaze, Minato',
+          img: CANDIDATE4.IMG,
+          name: CANDIDATE4.NAME,
         },
         '05': {
-          img: 'tsunade',
-          name: 'Senju, Tsunade',
+          img: CANDIDATE5.IMG,
+          name: CANDIDATE5.NAME,
         },
         '06': {
-          img: 'kakashi',
-          name: 'Hatake, Kakashi',
+          img: CANDIDATE6.IMG,
+          name: CANDIDATE6.NAME,
         },
         '07': {
-          img: 'naruto',
-          name: 'Uzumaki, Naruto',
+          img: CANDIDATE7.IMG,
+          name: CANDIDATE7.NAME,
         },
       },
     }
   },
   methods: {
     setParty(value) {
+      this.playAudio(keyAudio)
       if (this.party.length === this.caracters) {
         return false
       }
@@ -79,27 +95,56 @@ export default {
       }
       this.candidate = {
         name: 'Voto Nulo',
-        party: 'Voto Nulo',
-        imagem: ' ',
+        img: '',
       }
       return true
     },
-    votarNulo() {
-      console.log(this.candidate.name)
-      console.log('to fazendo teste')
-
+    whiteVote() {
+      if (this.isVote === false) return false
+      this.clearVote()
+      return this.nextScreen()
+    },
+    deleteVote() {
+      this.clearVote()
+    },
+    confirmVote() {
+      if (this.party.length < this.caracters) {
+        return false
+      }
+      return this.nextScreen()
+    },
+    clearVote() {
+      this.candidate = {
+        name: '',
+        img: '',
+      }
+      this.party = ''
+    },
+    nextScreen() {
+      this.playAudio(confirmAudio)
+      this.isVote = false
+      const begin = this
+      setTimeout(() => {
+        begin.isVote = 'MELHOR HOKAGE'
+        this.clearVote()
+      }, 3000)
+    },
+    playAudio(value) {
+      if (value) {
+        const audio = new Audio(value)
+        audio.play()
+      }
     },
   },
-
 }
 </script>
 
 <style lang="stylus" scoped>
  .box {
     width: 700px
-    height: 400px
+    height: 390px
     background-color: $colorBox
-    padding: 30px
+    padding: 25px
     border-radius: $radius
     display: flex
     justify-content: space-between

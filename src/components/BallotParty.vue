@@ -29,12 +29,12 @@ export default {
   align-items: center
 
 .party__number
-  width: 12%
+  width: 10%
   height: 45px
   border: 1px solid black
-  margin: 2% 0% 3% 3%
+  margin: 1% 0% 3% 3%
   display: flex
   justify-content: center
   align-items: center
-  font-size: 1.4rem
+  font-size: 1.2rem
 </style>

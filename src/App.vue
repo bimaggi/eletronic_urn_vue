@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Vote  com consciência</h1>
+    <h1>VOTE COM CONSCIÊNCIA</h1>
     <app-header/>
     <ballot-box />
   </div>

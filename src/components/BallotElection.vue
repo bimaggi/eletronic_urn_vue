@@ -1,7 +1,7 @@
 <template>
-<div>
-  <div>Seu voto para:</div>
-  <div>{{isVote}}</div>
+<div class="election">
+  <div class="election__title">Seu voto para:</div>
+  <div> <strong>{{isVote}}</strong></div>
 </div>
 </template>
 
@@ -15,3 +15,13 @@ export default {
   },
 }
 </script>
+
+<style lang="stylus" scoped>
+.election
+  display: flex
+  flex-direction: column
+
+.election__title
+  margin-bottom: 6%
+
+</style>
