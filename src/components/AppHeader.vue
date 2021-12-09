@@ -5,51 +5,63 @@
       :key="hokage"
       class="list__candidate"
     >
-      {{hokage.name}} - {{hokage.num}}
+      {{hokage.img}} - {{hokage.num}}
       <img :src="require(`@/assets/images/${hokage.img}.png`)" class="list__img">
     </div>
   </div>
 </template>
 <script>
+import candidates from '@/enums/candidates'
+
+const {
+  CANDIDATE1,
+  CANDIDATE2,
+  CANDIDATE3,
+  CANDIDATE4,
+  CANDIDATE5,
+  CANDIDATE6,
+  CANDIDATE7,
+} = candidates
+
 export default {
   name: 'AppHeader',
   data() {
     return {
       hokages: [
         {
-          name: 'Hashirama',
-          num: '01',
-          img: 'hashirama',
+          name: CANDIDATE1.NAME,
+          num: CANDIDATE1.NUM,
+          img: CANDIDATE1.IMG,
         },
         {
-          name: 'Tobirama',
-          num: '02',
-          img: 'tobirama',
+          name: CANDIDATE2.NAME,
+          num: CANDIDATE2.NUM,
+          img: CANDIDATE2.IMG,
         },
         {
-          name: 'Hiruzen',
-          num: '03',
-          img: 'hiruzen',
+          name: CANDIDATE3.NAME,
+          num: CANDIDATE3.NUM,
+          img: CANDIDATE3.IMG,
         },
         {
-          name: 'Minato',
-          num: '04',
-          img: 'minato',
+          name: CANDIDATE4.NAME,
+          num: CANDIDATE4.NUM,
+          img: CANDIDATE4.IMG,
         },
         {
-          name: 'Tsunade',
-          num: '05',
-          img: 'tsunade',
+          name: CANDIDATE5.NAME,
+          num: CANDIDATE5.NUM,
+          img: CANDIDATE5.IMG,
         },
         {
-          name: 'Kakashi',
-          num: '06',
-          img: 'kakashi',
+          name: CANDIDATE6.NAME,
+          num: CANDIDATE6.NUM,
+          img: CANDIDATE6.IMG,
         },
         {
-          name: 'Naruto',
-          num: '07',
-          img: 'naruto',
+          name: CANDIDATE7.NAME,
+          num: CANDIDATE7.NUM,
+          img: CANDIDATE7.IMG,
         },
       ],
     }
@@ -60,8 +72,8 @@ export default {
 .list
   display: flex
   width: 100%
-  justify-content: center
   color: $fontLight
+  justify-content: center
 
 .list__candidate
   display: flex
@@ -70,6 +82,6 @@ export default {
   font-size: .8rem
 
 .list__img
-  width: 85px
+  width: 90px
   border-radius: 50%
 </style>

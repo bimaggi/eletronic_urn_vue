@@ -6,18 +6,22 @@
           :isVote="isVote"
         />
         <ballot-candidate
-          :party="party"
-          :candidate="candidate"
+          :candidate-image="candidate.img"
+          :key="candidate.img"
         />
       </div>
       <ballot-party
         :party="party"
         :caracters="caracters"
       />
+      <ballot-description
+        :party="party"
+        :candidate="candidate"
+      />
       <ballot-instruction/>
       </div>
       <div v-else>
-        Finalização
+        <ballot-finished/>
       </div>
   </div>
 </template>
@@ -27,6 +31,8 @@ import BallotElection from '@/components/BallotElection'
 import BallotParty from '@/components/BallotParty'
 import BallotCandidate from '@/components/BallotCandidate'
 import BallotInstruction from '@/components/BallotInstruction'
+import BallotDescription from '@/components/BallotDescription'
+import BallotFinished from '@/components/BallotFinished'
 
 export default {
   name: 'BallotScreen',
@@ -35,6 +41,8 @@ export default {
     BallotParty,
     BallotCandidate,
     BallotInstruction,
+    BallotDescription,
+    BallotFinished,
   },
   props: {
     isVote: {
@@ -47,7 +55,7 @@ export default {
       type: String,
     },
     candidate: {
-      type: String,
+      type: Object,
     },
   },
 
@@ -56,11 +64,12 @@ export default {
 
 <style lang="stylus" scoped>
 .screen
-  width: 52%
+  width: 58%
   background-color: $colorScrenn
   border: 1px solid $borderLight
   padding: 15px
   color: $fontDark
+  font-size: .9rem
 
 .screen_candidate
   width: 100%
